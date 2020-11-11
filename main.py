@@ -17,8 +17,8 @@ def proc_data(fname: str, center: (float, float)):
     return dists
 
 datasets = [
-    # ('isoamyl_fly1.csv', (300, 300)),
-    # ('isoamyl_fly2.csv', (300, 300)),
+    ('isoamyl_fly1.csv', (300, 300)),
+    ('isoamyl_fly2.csv', (300, 300)),
     ('trackfeet_fly1.csv', (300, 300)),
     ('trackfeet_fly2.csv', (300, 300)),
         ]
@@ -31,6 +31,6 @@ if __name__ == '__main__':
         plt.plot(proc_data('data/'+fname, center))
         plt.ylabel(f'distance from {center} for {fname}')
         plt.savefig('out/' + fname.replace('.csv', ''))
-        from subprocess import run
-        run(['qlmanage', '-p', 'out/'+fname.replace('.csv', '.png'), '>/dev/null'])
+        from os import system
+        system(f"qlmanage -p out/{fname.replace('.csv', '.png')} >/dev/null 2>&1")
 
